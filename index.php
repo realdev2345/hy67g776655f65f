@@ -2,7 +2,7 @@
 session_start();
 
 // CORS headers to allow requests from your Cloudflare domain
-header("Access-Control-Allow-Origin: https://galadarrirent.com"); // Replace with your actual Cloudflare domain
+header("Access-Control-Allow-Origin: https://acipnergy.com"); // Replace with your actual Cloudflare domain
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
@@ -14,7 +14,7 @@ $time_window = 900; // Time window in seconds (1 hour)
 
 // Blocked IPs and allowed referrers
 $blocked_ips = ['123.45.67.89', '111.222.333.444']; // Add IPs to block here
-$allowed_referrers = ['galadarrirent.com']; // Add trusted referrer domains
+$allowed_referrers = ['acipnergy.com']; // Add trusted referrer domains
 
 // Initialize session for rate-limiting if not already set
 if (!isset($_SESSION['requests'])) {
