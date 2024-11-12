@@ -1,22 +1,25 @@
-# Use an official PHP runtime as a parent image
-FROM php:8.1-apache
+# Use the official PHP image with Apache support
+FROM php:8.0-apache
 
-# Set working directory
+# Enable mod_rewrite for Apache
+RUN a2enmod rewrite
+
+# Set working directory in the container
 WORKDIR /var/www/html
 
-# Copy the current directory contents into the container at /var/www/html
+# Copy your PHP code into the working directory
 COPY . /var/www/html
 
-# Install PHP extensions if needed
-# Uncomment and add any necessary extensions here based on your app requirements
-# RUN docker-php-ext-install mysqli pdo pdo_mysql
+# Install any additional PHP extensions your application might need
+# e.g., pdo, mysqli, etc.
+RUN docker-php-ext-install pdo pdo_mysql
 
-# Update permissions to ensure Apache can serve files correctly
+# Set appropriate file permissions for Apache
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Expose port 80 to the outside world
+# Expose the port Apache is running on
 EXPOSE 80
 
-# Start Apache in the foreground (default behavior)
+# Restart Apache to make sure all configurations are loaded
 CMD ["apache2-foreground"]
